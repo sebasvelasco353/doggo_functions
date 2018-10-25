@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 // File with dog breeds and their info
 const dogBreeds = require('./dogBreeds.json');
+
 /*
 *
 * The information on the JSON file was gathered from this web page:
@@ -14,12 +15,21 @@ const dogBreeds = require('./dogBreeds.json');
 * "actividad" -> 0 being not active and 5 being super active
 * "espacio" -> 0 being pequeno and 5 being muy grande
 * "ninos" -> 0 being not good with kids and 1 being good with kids
-* "atention" -> 0 being doesnt need much time 5 being needs a lot of time
+* "tiempo" -> 0 being doesnt need much time 5 being needs a lot of time
+* "clima" -> 0 frio ... 3 medio ... 5 caliente
+* "otrosPerros" -> 0 doesnt like other dogs ... 1 does like other dogs
+* "tamano" (on dogs) -> 0 its small (>= 2 starts on webpage), 1 its medium (= 3 stars on webpage), 2 its big dog (<= 4 stars on webpage)
+* "tamano" (on owner) -> 0 its less than 1,60mts, 1 its between 1,61 and 1,90, 2 its more than 1,91
 *
 */
-exports.recommendDog = functions.https.onRequest((request, response) => {
+
+const euclidianSimilarity = (userData) => {
     dogBreeds.forEach(breed => {
         console.log(breed.name);
     });
-    response.send(dogBreeds);
+    return userData;
+}
+exports.recommendDog = functions.https.onRequest((request, response) => {
+    let data = euclidianSimilarity(request.query);
+    response.send(data);
 });
