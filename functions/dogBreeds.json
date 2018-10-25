@@ -1,12 +1,38 @@
-{
-    "Gila Brasilero": {
-        "adaptabilidad": "3",
-        "tamanoVivienda": "1",
-        "tiempoDisponible": "3"
+[
+    {
+        "name": "test Dog Uno",
+        "data": {
+            "actividad": "3",
+            "espacio": "3",
+            "ninos": "1",
+            "tiempo": "2",
+            "clima": "3",
+            "otrosPerros": "1",
+            "tamano": "1"
+        }
     },
-    "Goldendoodle": {
-        "adaptabilidad": "3",
-        "tamanoVivienda": "1",
-        "tiempoDisponible": "3"
+    {
+        "name": "Goldendoodle",
+        "data": {
+            "actividad": "1",
+            "espacio": "4",
+            "ninos": "0",
+            "tiempo": "5",
+            "clima": "3",
+            "otrosPerros": "0",
+            "tamano": "2"
+        }
+    },
+    {
+        "name": "otro perro",
+        "data": {
+            "actividad": "1",
+            "espacio": "0",
+            "ninos": "1",
+            "tiempo": "1",
+            "clima": "1",
+            "otrosPerros": "0",
+            "tamano": "2"
+        }
     }
-}
+]

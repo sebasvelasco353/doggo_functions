@@ -1,7 +1,6 @@
 const functions = require('firebase-functions');
 // File with dog breeds and their info
 const dogBreeds = require('./dogBreeds.json');
-
 /*
 *
 * The information on the JSON file was gathered from this web page:
@@ -19,5 +18,8 @@ const dogBreeds = require('./dogBreeds.json');
 *
 */
 exports.recommendDog = functions.https.onRequest((request, response) => {
+    dogBreeds.forEach(breed => {
+        console.log(breed.name);
+    });
     response.send(dogBreeds);
 });
