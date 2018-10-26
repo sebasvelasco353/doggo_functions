@@ -1,5 +1,4 @@
 const functions = require('firebase-functions');
-// File with dog breeds and their info
 const dogBreeds = require('./dogBreeds.json');
 
 /*
@@ -22,14 +21,26 @@ const dogBreeds = require('./dogBreeds.json');
 * "tamano" (on owner) -> 0 its less than 1,60mts, 1 its between 1,61 and 1,90, 2 its more than 1,91
 *
 */
+const loadJson = () => {
 
+}
 const euclidianSimilarity = (userData) => {
-    dogBreeds.forEach(breed => {
-        console.log(breed.name);
-    });
-    return userData;
+    let distancias = [];
+    let data = dogBreeds.dogBreeds;
+    let breeds = {};
+    for (let i = 0; i < data.length; i++) {
+        let nombre = data[i].nombre;
+        breeds[nombre] = data[i];
+    }
+    // TODO: ordenar alfabeticamente los dos arreglos: datos de perros y datos de persona
+    // TODO: raiz cuadrada de la sumatoria de (dato1 de usuario menos dato1 de perro) al cuadrado
+    // TODO: hago 1/(1+resultado de la distancia) para tener el indice de coincidencia
+    // TODO: igualo objeto coeficiente de relacion con objeto que contiene resultado de operacion y breed.nombre
+    // TODO: push de la solucion de esta distancia a el arreglo de distancias
+    // TODO: hacer sort al arreglo de distancias para encontrar las mas proximas
+    console.log(breeds);
 }
 exports.recommendDog = functions.https.onRequest((request, response) => {
     let data = euclidianSimilarity(request.query);
-    response.send(data);
+    response.send("data");
 });
