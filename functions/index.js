@@ -21,17 +21,18 @@ const dogBreeds = require('./dogBreeds.json');
 * "tamano" (on owner) -> 0 its less than 1,60mts, 1 its between 1,61 and 1,90, 2 its more than 1,91
 *
 */
-const euclidianSimilarity = (userData) => {
+const euclidianSimilarity = (dogBreeds, userData) => {
     let distancias = [];
     let breeds = {};
     // organize the data so the name its the index of the breed
+    console.log(`primer paso organize the data`);
     for (let i = 0; i < dogBreeds.dogBreeds.length; i++) {
         let nombre = dogBreeds.dogBreeds[i].nombre;
         breeds[nombre] = dogBreeds.dogBreeds[i];
         // Delete the name key from the breed obj
         delete breeds[nombre]["nombre"];
     }
-
+    console.log(`segundo paso hacer la resta y elevarla al cuadrado`);
     // (dato1 de perro - dato1 de usuario) al cuadrado
     for (const breed in breeds) {
         console.log(`doing the distance between ${breed} and user`);
@@ -39,16 +40,18 @@ const euclidianSimilarity = (userData) => {
         let breedDistance = {};
         for (const key in breeds[breed]) {
             // console.log(`Doing the substraction of ${key} of the breed ${breed} which is ${breeds[breed][key]} and the ${key} user which is ${userData[key]}`);
+            console.log(`Doing the substraction of ${key} of the breed ${breed}`);
             let result = breeds[breed][key] - userData[key];
-            // console.log(`the result its ${result}`);
+            console.log(`the result its ${result}`);
             let pow = Math.pow(result, 2);
-            // console.log(`elevado al cuadrado es ${pow}`);
+            console.log(`elevado al cuadrado es ${pow}`);
             powResults += pow;
-            console.log(powResults);
-
         }
+        //raiz cuadrada de la sumatoria de las restas al cuadrado
+        console.log(`tercer paso sacar la raiz cuadrada de el resultado de elevar al cuadrado la resta`);
+        let distance = Math.sqrt(powResults);
+        console.log(`............this is the distance from user to ${breed}: ${distance}`);
     }
-    // TODO: raiz cuadrada de la sumatoria de las restas al cuadrado
     // TODO: hago 1/(1+resultado de la distancia) para tener el indice de coincidencia
     // TODO: igualo objeto coeficiente de relacion con objeto que contiene resultado de operacion y breed.nombre
     // TODO: push de la solucion de esta distancia a el arreglo de distancias
@@ -56,6 +59,6 @@ const euclidianSimilarity = (userData) => {
     return distancias;
 }
 exports.recommendDog = functions.https.onRequest((request, response) => {
-    let data = euclidianSimilarity(request.query);
+    let data = euclidianSimilarity(dogBreeds, request.query);
     response.send(data);
 });
