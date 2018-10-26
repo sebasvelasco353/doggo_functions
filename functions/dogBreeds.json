@@ -1,34 +1,44 @@
 {
     "dogBreeds": [
         {
-            "actividad": "3",
-            "clima": "3",
-            "espacio": "3",
+            "actividad": 3,
+            "clima": 3,
+            "espacio": 3,
             "nombre": "test Dog Uno",
-            "ninos": "1",
-            "otrosPerros": "1",
-            "tamano": "1",
-            "tiempo": "2"
+            "ninos": 1,
+            "otrosPerros": 1,
+            "tamano": 1,
+            "tiempo": 2
         },
         {
-            "actividad": "1",
-            "clima": "3",
-            "espacio": "4",
+            "actividad": 1,
+            "clima": 3,
+            "espacio": 4,
             "nombre": "Goldendoodle",
-            "ninos": "0",
-            "otrosPerros": "0",
-            "tamano": "2",
-            "tiempo": "5"
+            "ninos": 0,
+            "otrosPerros": 0,
+            "tamano": 2,
+            "tiempo": 5
         },
         {
-            "actividad": "1",
-            "clima": "1",
-            "espacio": "0",
+            "actividad": 1,
+            "clima": 1,
+            "espacio": 0,
             "nombre": "otro perro",
-            "ninos": "1",
-            "otrosPerros": "0",
-            "tamano": "2",
-            "tiempo": "1"
+            "ninos": 1,
+            "otrosPerros": 0,
+            "tamano": 2,
+            "tiempo": 1
+        },
+        {
+            "actividad": 1,
+            "clima": 1,
+            "espacio": 0,
+            "nombre": "otro perro",
+            "ninos": 1,
+            "otrosPerros": 0,
+            "tamano": 2,
+            "tiempo": 1
         }
     ]
 }
