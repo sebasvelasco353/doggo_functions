@@ -20,45 +20,39 @@ const dogBreeds = require('./dogBreeds.json');
 * "tamano" (on dogs) -> 0 its small (>= 2 starts on webpage), 1 its medium (= 3 stars on webpage), 2 its big dog (<= 4 stars on webpage)
 * "tamano" (on owner) -> 0 its less than 1,60mts, 1 its between 1,61 and 1,90, 2 its more than 1,91
 *
+* ---- STEPS ON THE PROCESS ----
+* 1. Organize the data so the name its the index of the breed and delete the name of the breed from the object.
+* 2. substract every key from dog and owner and power it al cuadrado.
+* 3. Add the current result of step 2 to the powResults variable.
+* 4. Find the square root of powResults and thats the Euclidean Distance
+* 5. to find the similarity score i divide one on (one plus the distance) and push it to an array with the corresponding breed name
+* 6. Create a function that will sort the array to find the k nearest, in this case k = 3
+*
 */
-const euclidianSimilarity = (dogBreeds, userData) => {
-    let distancias = [];
+
+exports.recommendDog = functions.https.onRequest((request, response) => {
+    let similarityScores = [];
     let breeds = {};
-    // organize the data so the name its the index of the breed
-    console.log(`primer paso organize the data`);
     for (let i = 0; i < dogBreeds.dogBreeds.length; i++) {
         let nombre = dogBreeds.dogBreeds[i].nombre;
         breeds[nombre] = dogBreeds.dogBreeds[i];
-        // Delete the name key from the breed obj
         delete breeds[nombre]["nombre"];
     }
-    console.log(`segundo paso hacer la resta y elevarla al cuadrado`);
-    // (dato1 de perro - dato1 de usuario) al cuadrado
     for (const breed in breeds) {
-        console.log(`doing the distance between ${breed} and user`);
         let powResults = 0;
-        let breedDistance = {};
         for (const key in breeds[breed]) {
-            // console.log(`Doing the substraction of ${key} of the breed ${breed} which is ${breeds[breed][key]} and the ${key} user which is ${userData[key]}`);
-            console.log(`Doing the substraction of ${key} of the breed ${breed}`);
-            let result = breeds[breed][key] - userData[key];
-            console.log(`the result its ${result}`);
+            let result = breeds[breed][key] - request.query[key];
             let pow = Math.pow(result, 2);
-            console.log(`elevado al cuadrado es ${pow}`);
             powResults += pow;
         }
-        //raiz cuadrada de la sumatoria de las restas al cuadrado
-        console.log(`tercer paso sacar la raiz cuadrada de el resultado de elevar al cuadrado la resta`);
         let distance = Math.sqrt(powResults);
-        console.log(`............this is the distance from user to ${breed}: ${distance}`);
+        similarityScores.push({
+            "breed": breed,
+            "similarityScore": 1 / (1 + distance)
+        });
     }
-    // TODO: hago 1/(1+resultado de la distancia) para tener el indice de coincidencia
-    // TODO: igualo objeto coeficiente de relacion con objeto que contiene resultado de operacion y breed.nombre
-    // TODO: push de la solucion de esta distancia a el arreglo de distancias
-    // TODO: hacer sort al arreglo de distancias para encontrar las mas proximas
-    return distancias;
-}
-exports.recommendDog = functions.https.onRequest((request, response) => {
-    let data = euclidianSimilarity(dogBreeds, request.query);
-    response.send(data);
+    // TODO: hacer sort al arreglo de similarityScores para encontrar las mas proximas
+
+    console.log(similarityScores);
+    response.send(similarityScores);
 });

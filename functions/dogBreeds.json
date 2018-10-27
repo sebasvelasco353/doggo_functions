@@ -32,9 +32,49 @@
         },
         {
             "actividad": 1,
+            "clima": 0,
+            "espacio": 2,
+            "nombre": "c otro perro",
+            "ninos": 1,
+            "otrosPerros": 0,
+            "tamano": 2,
+            "tiempo": 1
+        },
+        {
+            "actividad": 1,
             "clima": 1,
             "espacio": 0,
-            "nombre": "otro perro",
+            "nombre": "otro erro",
+            "ninos": 1,
+            "otrosPerros": 1,
+            "tamano": 0,
+            "tiempo": 1
+        },
+        {
+            "actividad": 1,
+            "clima": 1,
+            "espacio": 0,
+            "nombre": " perro",
+            "ninos": 1,
+            "otrosPerros": 0,
+            "tamano": 2,
+            "tiempo": 3
+        },
+        {
+            "actividad": 0,
+            "clima": 0,
+            "espacio": 0,
+            "nombre": "otro coso",
+            "ninos": 0,
+            "otrosPerros": 0,
+            "tamano": 0,
+            "tiempo": 0
+        },
+        {
+            "actividad": 1,
+            "clima": 1,
+            "espacio": 0,
+            "nombre": "o",
             "ninos": 1,
             "otrosPerros": 0,
             "tamano": 2,
