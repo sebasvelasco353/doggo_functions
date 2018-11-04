@@ -33,11 +33,9 @@ const dogBreeds = require('./dogBreeds.json');
 exports.recommendDog = functions.https.onRequest((request, response) => {
     let similarityScores = [];
     let breeds = {};
-    for (let i = 0; i < dogBreeds.dogBreeds.length; i++) {
-        let nombre = dogBreeds.dogBreeds[i].nombre;
-        breeds[nombre] = dogBreeds.dogBreeds[i];
-        delete breeds[nombre]["nombre"];
-    }
+    dogBreeds.dogBreeds.forEach(element => {
+        breeds[element.nombre] = element.data;
+    });
     for (const breed in breeds) {
         let powResults = 0;
         for (const key in breeds[breed]) {
@@ -51,8 +49,5 @@ exports.recommendDog = functions.https.onRequest((request, response) => {
             "similarityScore": 1 / (1 + distance)
         });
     }
-    // TODO: hacer sort al arreglo de similarityScores para encontrar las mas proximas
-
-    console.log(similarityScores);
     response.send(similarityScores);
 });
