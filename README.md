@@ -23,7 +23,7 @@ https://dogtime.com/dog-breeds/ and will be both on the json file here and on th
 
 ## -------> TODO <-------
 * Fill the json file with the actual data
-* fix Bug: first run works ok, second returns only one result and the name its undefined.
+* Sort the response array and send the actuall k-nearest
 
 
 
