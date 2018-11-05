@@ -49,5 +49,6 @@ exports.recommendDog = functions.https.onRequest((request, response) => {
             "similarityScore": 1 / (1 + distance)
         });
     }
+    console.log(similarityScores);
     response.send(similarityScores);
 });
