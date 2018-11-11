@@ -34,21 +34,26 @@ exports.recommendDog = functions.https.onRequest((request, response) => {
     let similarityScores = [];
     let breeds = {};
     dogBreeds.dogBreeds.forEach(element => {
-        breeds[element.nombre] = element.data;
+        let cosa = {
+            data: element.data,
+            description: element.description
+        }
+        breeds[element.nombre] = cosa;
     });
     for (const breed in breeds) {
         let powResults = 0;
-        for (const key in breeds[breed]) {
-            let result = breeds[breed][key] - request.query[key];
+        for (const key in breeds[breed].data) {
+            let result = breeds[breed].data[key] - request.query[key];
             let pow = Math.pow(result, 2);
             powResults += pow;
         }
         let distance = Math.sqrt(powResults);
         similarityScores.push({
             "breed": breed,
-            "similarityScore": 1 / (1 + distance)
+            "similarityScore": 1 / (1 + distance),
+            "data": breeds[breed].data,
+            "description": breeds[breed].description
         });
     }
-    console.log(similarityScores);
     response.send(similarityScores);
 });

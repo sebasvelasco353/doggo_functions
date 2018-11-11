@@ -10,7 +10,8 @@
                 "otrosPerros": 1,
                 "tamano": 1,
                 "tiempo": 2
-            }
+            },
+            "description": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
         },
         {
             "nombre": "Goldendoodle",
@@ -22,7 +23,8 @@
                 "otrosPerros": 0,
                 "tamano": 2,
                 "tiempo": 5
-            }
+            },
+            "description": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
         },
         {
             "nombre": "otro perro",
@@ -34,7 +36,8 @@
                 "otrosPerros": 0,
                 "tamano": 2,
                 "tiempo": 1
-            }
+            },
+            "description": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
         },
         {
             "nombre": "te Uno",
@@ -46,7 +49,8 @@
                 "otrosPerros": 0,
                 "tamano": 1,
                 "tiempo": 2
-            }
+            },
+            "description": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
         },
         {
             "nombre": "perro care marrano",
@@ -58,7 +62,8 @@
                 "otrosPerros": 0,
                 "tamano": 1,
                 "tiempo": 5
-            }
+            },
+            "description": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
         },
         {
             "nombre": "otro perro mas del monton",
@@ -70,7 +75,8 @@
                 "otrosPerros": 1,
                 "tamano": 1,
                 "tiempo": 1
-            }
+            },
+            "description": "Your bones don't break, mine do. That's clear. Your cells react to bacteria and viruses differently than mine. You don't get sick, I do. That's also clear. But for some reason, you and I react the exact same way to water. We swallow it too fast, we choke. We get some in our lungs, we drown. However unreal it may seem, we are connected, you and I. We're on the same curve, just on opposite ends."
         }
     ]
 }
