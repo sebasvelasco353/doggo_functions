@@ -33,6 +33,7 @@ const dogBreeds = require('./dogBreeds.json');
 exports.recommendDog = functions.https.onRequest((request, response) => {
     let similarityScores = [];
     let breeds = {};
+    let recommendations = [];
     dogBreeds.dogBreeds.forEach(element => {
         let cosa = {
             data: element.data,
@@ -50,10 +51,14 @@ exports.recommendDog = functions.https.onRequest((request, response) => {
         let distance = Math.sqrt(powResults);
         similarityScores.push({
             "breed": breed,
-            "similarityScore": 1 / (1 + distance),
+            "similarityScore": (1 / (1 + distance)) * 100,
             "data": breeds[breed].data,
             "description": breeds[breed].description
         });
+        similarityScores.sort(function (a, b) { return b.similarityScore - a.similarityScore });
     }
-    response.send(similarityScores);
+    for (let i = 0; i < 3; i++) {
+        recommendations.push(similarityScores[i]);
+    }
+    response.send(recommendations);
 });
