@@ -1,4 +1,8 @@
 const functions = require('firebase-functions');
+// CORS Express middleware to enable CORS Requests.
+const cors = require('cors')({
+    origin: true,
+});
 const dogBreeds = require('./dogBreeds.json');
 
 /*
@@ -31,34 +35,37 @@ const dogBreeds = require('./dogBreeds.json');
 */
 
 exports.recommendDog = functions.https.onRequest((request, response) => {
-    let similarityScores = [];
-    let breeds = {};
-    let recommendations = [];
-    dogBreeds.dogBreeds.forEach(element => {
-        let cosa = {
-            data: element.data,
-            description: element.description
-        }
-        breeds[element.nombre] = cosa;
-    });
-    for (const breed in breeds) {
-        let powResults = 0;
-        for (const key in breeds[breed].data) {
-            let result = breeds[breed].data[key] - request.query[key];
-            let pow = Math.pow(result, 2);
-            powResults += pow;
-        }
-        let distance = Math.sqrt(powResults);
-        similarityScores.push({
-            "breed": breed,
-            "similarityScore": (1 / (1 + distance)) * 100,
-            "data": breeds[breed].data,
-            "description": breeds[breed].description
+    // Enable CORS using the `cors` express middleware.
+    return cors(request, response, () => {
+        let similarityScores = [];
+        let breeds = {};
+        let recommendations = [];
+        dogBreeds.dogBreeds.forEach(element => {
+            let cosa = {
+                data: element.data,
+                description: element.description
+            }
+            breeds[element.nombre] = cosa;
         });
-        similarityScores.sort(function (a, b) { return b.similarityScore - a.similarityScore });
-    }
-    for (let i = 0; i < 3; i++) {
-        recommendations.push(similarityScores[i]);
-    }
-    response.send(recommendations);
+        for (const breed in breeds) {
+            let powResults = 0;
+            for (const key in breeds[breed].data) {
+                let result = breeds[breed].data[key] - request.query[key];
+                let pow = Math.pow(result, 2);
+                powResults += pow;
+            }
+            let distance = Math.sqrt(powResults);
+            similarityScores.push({
+                "breed": breed,
+                "similarityScore": (1 / (1 + distance)) * 100,
+                "data": breeds[breed].data,
+                "description": breeds[breed].description
+            });
+            similarityScores.sort(function (a, b) { return b.similarityScore - a.similarityScore });
+        }
+        for (let i = 0; i < 3; i++) {
+            recommendations.push(similarityScores[i]);
+        }
+        response.status(200).send(recommendations);
+    });
 });
